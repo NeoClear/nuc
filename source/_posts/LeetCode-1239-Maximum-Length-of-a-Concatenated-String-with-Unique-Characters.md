@@ -2,7 +2,7 @@
 title: LeetCode 1239 Maximum Length of a Concatenated String with Unique Characters
 date: 2019-11-04 22:02:10
 tags:
-- bit
+- bit operation
 - backtracing
 ---
 
