@@ -28,8 +28,14 @@ float vertices[] = {
     0.5f, -0.5f, 0.0f,
     0.0f, 0.5f, 0.0f,
     0.8f, 0.8f, 0.0f,
-    0.5f, -0.5f, 0.0f,
-    0.0f, 0.5f, 0.0f
+    // 0.5f, -0.5f, 0.0f,
+    // 0.0f, 0.5f, 0.0f
+};
+
+// index索引
+unsigned int indices[] = {
+    0, 1, 2,
+    2, 1, 3
 };
 
 // 顶点shader program
@@ -90,6 +96,12 @@ int main() {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     // 将顶点信息读入当前buffer
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    
+    // 新建EBO并绑定至当前上下文
+    unsigned int EBO;
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // 编译vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -121,10 +133,14 @@ int main() {
 
         // 使用这个VAO
         glBindVertexArray(VAO);
+        // 使用这个EBO
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         // 使用设置的shader program
         glUseProgram(shaderProgram);
+        // 使用当前的EBO画图
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         // 使用当前attribute pointer指向的数据画图
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+        // glDrawArrays(GL_TRIANGLES, 0, 6);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
@@ -144,3 +160,20 @@ VAO相当与指向一个VBO的指针，内部有15个小指针（0至15）。通
 
 再接再厉吧，opengl真的不是人能学的。
 没办法，谁让AMD是显卡公司呢
+
+加一点内容：
+
+opengl默认绘制三角形为逆时针绘制，假如三角形的点排序为顺时针，则会绘制图形的背面。
+opengl默认绘制图形背面。假如不需要绘制图形背面，可以加入以下代码：
+```c++
+glEnable(GL_CULL_FACE);
+glCullFace(GL_FRONT);
+```
+
+假如想要将多边形绘制成线条状，可以使用以下函数：
+```c++
+glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+```
+
+opengl可以理解为一个状态机，拥有一个context。
+上文中的各种bind函数将VAO、VBO、EBO绑定至当前context，然后使用其组合绘制图形。
