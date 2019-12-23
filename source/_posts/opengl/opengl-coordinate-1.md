@@ -18,6 +18,8 @@ World Space：
 Camera：
 摄像机有个拍摄坐标和角度
 
+<!--more-->
+
 生成坐标的代码：
 ```c++
 glm::mat4 modelMat;

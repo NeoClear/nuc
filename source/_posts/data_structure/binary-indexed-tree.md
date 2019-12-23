@@ -10,6 +10,8 @@ tags:
 binary indexed tree，又称fenwick tree，树状数组。是一种动态维护数组前缀和的数据结构。其代码极为简洁。
 但是理解概念较难。一般直接背代码。
 
+<!--more-->
+<!--more-->
 ```c++
 class fwt {
 private:

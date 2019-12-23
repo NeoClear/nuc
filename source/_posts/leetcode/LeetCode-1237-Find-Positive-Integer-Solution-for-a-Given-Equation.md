@@ -10,6 +10,8 @@ tags:
 非常水的一题。。。
 可以用二分做，但是没必要？（用二分无法改进复杂度
 
+<!--more-->
+
 ```c++
 class CustomFunction {
 public:

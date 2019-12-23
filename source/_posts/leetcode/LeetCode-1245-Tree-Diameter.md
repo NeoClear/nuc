@@ -12,6 +12,8 @@ tags:
 使用dfs遍历graph，函数返回这个节点能返回的最长路径的点数。
 再dfs中使用返回值计算最长路径并更新，最后得出答案。
 
+<!--more-->
+
 ```c++
 class Solution {
 public:

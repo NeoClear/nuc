@@ -10,6 +10,8 @@ tags:
 我真的是傻，想在一天之内就学会这个。。。
 就当是一次教训吧。记录下
 
+<!--more-->
+
 ```makefile
 obj-m := hello.o
 KERNELBUILD :=/lib/modules/$(shell uname -r)/build

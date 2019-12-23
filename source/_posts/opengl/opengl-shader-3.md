@@ -11,6 +11,8 @@ tags:
 
 代码其实也不复杂。。。（are you serious？？？）
 
+<!--more-->
+
 先上shader class的代码
 ```c++
 #include "Shader.h"

@@ -9,6 +9,8 @@ tags:
 非常简单的模拟题。。。
 似乎只能模拟，不能用高端算法解决。
 
+<!--more-->
+
 ```c++
 class Solution {
 public:

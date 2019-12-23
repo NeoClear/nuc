@@ -12,6 +12,8 @@ tags:
 
 在include的时候需要：
 
+<!--more-->
+
 ```c++
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"

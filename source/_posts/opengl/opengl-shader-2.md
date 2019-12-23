@@ -13,6 +13,8 @@ tags:
 首先，我们的vertices数组增加了一倍。
 每行三个float之后又加了三个float用来表示每个顶点的颜色。
 
+<!--more-->
+
 ```c++
 // 用于绘制顶点的数组
 float vertices[] = {

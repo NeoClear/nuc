@@ -7,6 +7,9 @@ tags:
 ---
 直接看code吧，没啥好讲的。。。
 需要注意OJ是否支持c++11。一些过时的OJ比如BZOJ就不支持。。。
+
+<!--more-->
+
 ```c++
 #include <bits/stdc++.h>
 

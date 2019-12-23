@@ -134,7 +134,7 @@ public:
 };
 ```
 
-# 1298. Maximum Candies You Can Get from Boxes
+## 1298. Maximum Candies You Can Get from Boxes
 ```python
 from typing import List
 from collections import Counter

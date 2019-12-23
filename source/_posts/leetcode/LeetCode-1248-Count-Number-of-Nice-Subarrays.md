@@ -11,6 +11,8 @@ tags:
 因为是subarray，而不是subsequence，使得难度大大下降。
 将每个偶奇数组合，记录每个group的组数。再排列组合计算总数。
 
+<!--more-->
+
 ```c++
 class Solution {
 public:

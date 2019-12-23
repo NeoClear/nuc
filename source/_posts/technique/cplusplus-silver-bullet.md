@@ -9,6 +9,8 @@ tags:
 
 翻转一个vector
 
+<!--more-->
+
 ```c++
 vector<int> t = {1, 2, 3, 4, 5};
 reverse(t.begin(), t.end());

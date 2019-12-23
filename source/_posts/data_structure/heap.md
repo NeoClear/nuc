@@ -8,6 +8,8 @@ tags:
 非常简单的数据结构。
 唯一复杂的部分是down函数。
 
+<!--more-->
+
 ```c++
 #include <bits/stdc++.h>
 

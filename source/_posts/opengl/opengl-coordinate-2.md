@@ -13,6 +13,8 @@ tags:
 
 解决方法：（Z缓冲）
 
+<!--more-->
+
 ```c++
 glEnable(GL_DEPTH_TEST);
 ...

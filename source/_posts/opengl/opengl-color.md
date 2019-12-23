@@ -13,6 +13,8 @@ tags:
 
 代码不放了，就几行2333
 
+<!--more-->
+
 ```c++
 glUniform3f(glGetUniformLocation(shader->ID, "objColor"), 1.0f, 0.5f, 0.31f);
 glUniform3f(glGetUniformLocation(shader->ID, "ambientColor"), 1.0f, 0.5f, 0.31f);

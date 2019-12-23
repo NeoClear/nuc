@@ -12,6 +12,8 @@ tags:
     遇到'('就将index入栈，遇到')'时，假如stack为空，就记录当前index；假如不为空，就pop。
     全部完成后剩下的index为需要去除的parens。
 
+<!--more-->
+
 ```c++
 class Solution {
 public:

@@ -9,6 +9,8 @@ tags:
 线段树，常见却又复杂。
 其基本原理较为简单，但实现中有这种各样的细节需要注意。
 
+<!--more-->
+
 ```c++
 struct segment_node {
     int left;

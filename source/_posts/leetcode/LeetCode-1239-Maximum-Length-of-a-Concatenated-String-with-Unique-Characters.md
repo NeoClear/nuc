@@ -12,6 +12,8 @@ tags:
 
 有一个技巧：if num1 + num2 == num1 | num2，证明两个数的bit不重叠，反之亦然。
 
+<!--more-->
+
 ```c++
 class Solution {
 public:

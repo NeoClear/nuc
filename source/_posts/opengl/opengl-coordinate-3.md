@@ -11,6 +11,8 @@ tags:
 
 重点：
 
+<!--more-->
+
 ```c++
 for (unsigned int i = 0; i < 10; i++) {
     glm::mat4 modelMat2;

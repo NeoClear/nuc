@@ -9,6 +9,8 @@ tags:
 
 Google Test
 
+<!--more-->
+
 CMakeLists大概长这样：
 ```c++
 cmake_minimum_required(VERSION 2.8)

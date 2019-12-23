@@ -14,6 +14,8 @@ GPU的pipeline大概长这个样子：
 VAO -> Vertex Shader -> Shape Assemble -> Geometry Shader
 -> Rasterization -> Fragment Shader -> Tests And Blending
 
+<!--more-->
+
 其中，vertex shader还可以通过uniform直接从CPU读取数据。
 我们可以直接编写代码让CPU将数据直接传到GPU流水线上。（可编程流水线就是强）
 

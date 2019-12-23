@@ -14,6 +14,8 @@ tags:
 1. swap，使diff += 2或diff -= 2，同时pair -= 2。需要swap一次。
 2. swap，使diff不变，但pair -= 2。需要swap两次。
 
+<!--more-->
+
 这样，题目分为两个情况：
 在pair == 2时：
 假如diff == 2，操作一次结束。

@@ -13,6 +13,8 @@ texture buffer的地位和EBO、VAO差不多。
 但是，texture buffer在opengl的context槽位有16个，和VAO中的槽位一样。
 所以，我们可以指定texture buffer绑定的槽位来进行多个贴图的渲染。
 
+<!--more-->
+
 首先在创建texture buffer的时候告诉opengl使用哪个槽位：
 
 ```c++

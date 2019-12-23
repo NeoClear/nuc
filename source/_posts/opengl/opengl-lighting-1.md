@@ -12,6 +12,8 @@ tags:
 
 ambient -> diffuse -> specular -> combined(Phong)
 
+<!--more-->
+
 ## 环境颜色
 
 将当前点的法向量和光线向量做点乘，就能得到当前点的环境光下的颜色

@@ -11,6 +11,8 @@ tags:
 
 It is a class that is similar to unordered_map in c++. It is a subclass of dict. When there is no such key in Counter, it will return a 0 (just like unordered_map in c++). Let's see its method calls.
 
+<!--more-->
+
 ```python
 t = Counter("234u934979282fehgre")
 t = Counter([431, 432, 543, 543, 543, 5423, 6532])

@@ -10,6 +10,8 @@ tags:
 vertex[i]记录与点i相邻的点的第一个Edge边。通过遍历获得所有相邻的点。
 需要注意的是边的index从1开始，因为0代表着遍历的结束。
 
+<!--more-->
+
 ```c++
 #include <bits/stdc++.h>
 

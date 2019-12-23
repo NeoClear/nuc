@@ -12,6 +12,8 @@ But it is difficult to type Chinese in linux, so...
 Today we will take a look at CMake, a cross-platform build tool.
 With the help of this tool, it is simpler to port your project into different operating systems like Windows and OS-X.
 
+<!--more-->
+
 This document is written based on other blogs.
 
 ## Case 1: single file

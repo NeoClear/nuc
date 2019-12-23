@@ -12,6 +12,8 @@ visual studio绝对是宇宙第一IDE！
 在linux上调了半年的CMake，用visual studio两分钟搞定。
 微软大法好。
 
+<!--more-->
+
 今天的opengl学习内容是在window上画一个三角形。
 直接贴代码吧，分着写多累呐。
 ```c++

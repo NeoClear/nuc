@@ -12,6 +12,8 @@ tags:
 类似map，只是通过value排序。
 所以使用map记录multiset的iterator，通过multiset记录value。
 
+<!--more-->
+
 ```c++
 class Leaderboard {
 public:
