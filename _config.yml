@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Star Path
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: NeoClear
 language: en
 timezone: ''
 
@@ -90,7 +90,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: melody
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

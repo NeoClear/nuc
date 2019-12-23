@@ -5,6 +5,8 @@ tags:
 - c++
 ---
 
+## std
+
 翻转一个vector
 
 ```c++
@@ -43,3 +45,12 @@ queue<tuple<int, int, int>> q;
 int tx, ty, to;
 tie(tx, ty, to) = q.front(); q.pop();
 ```
+
+## string
+how to get a slice of a string?
+use substr method call.
+```c++
+s.substr(i, length)
+```
+
+i indicates the index of first character and length stands for the length of the slice.
