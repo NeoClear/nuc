@@ -195,3 +195,137 @@ if (10 > 9)
 else
     System.out.println(false);
 ```
+
+## Switch
+
+Switch statement in java is almost the same as the one in c++. However, c++ does not allow string to be switched, but java allow it
+(java allow int, String and enumerate type to be switched)
+
+```java
+switch ("StarPort") {
+case "INnoVation":
+    System.out.println("INnoVation");
+    break;
+case "StarPort":
+    System.out.println("StarPort");
+    break;
+default:
+    System.out.println("Default");
+}
+```
+
+## While & Do While
+
+Just like c++
+
+## For & For Each
+
+Just like c++
+
+```java
+String[] players = {"INnoVation", "Maru", "ByuN", "Dark", "soO"};
+for (String p : players)
+    System.out.println(p);
+```
+
+## Array
+
+Array in java is something similar to vector in c++ and list in python (not array in c)
+In java you can use length property to get the length of an array (like size() method in c++ and len() function in python)
+
+```java
+int[] pl = {1, 2, 3, 4, 5};
+for (int p : pl)
+    System.out.println(p);
+
+int[][] gr = {{1, 2, 3, 4, 5}, {2, 4, 6}, {4, 7}};
+for (int[] line : gr) {
+    for (int ele : line)
+        System.out.print(ele);
+    System.out.println(line.length);
+}
+```
+
+## Method & Overloading
+
+In java, you can call a method within the same class with only its name and parameter
+
+And java supports overloading (distinguishing functions with the same name by their parameters)
+
+```java
+public class MyClass {
+    static void run() {
+        System.out.println("RUN");
+    }
+
+    static void run(String fname) {
+        System.out.println(fname + " running");
+    }
+
+    static int add(int a, int b) {
+        return a + b;
+    }
+
+    static double add(double a, double b) {
+        return a + b;
+    }
+    public static void main(String[] args) {
+        run();
+        run("StarPort");
+
+        System.out.println(add(2, 3));
+        System.out.println(add(2.3d, 2.4d));
+    }
+}
+```
+
+## Class
+
+In java, if a class is public, its name must match the file name (EX: public class MyClass must be contained by MyClass.java)
+
+in java, it creates an object of a class by (which is the same as c++)
+
+```java
+MyClass myObj = new MyClass();
+```
+
+Then you can use methods and properties of this instance of MyClass (like get the value of its property)
+
+### Compilation Process
+
+You can actually compile java files into .class binaries. .class files are binary codes, but you need java virtual machine to interprete them
+
+How it works?
+
+There are two files that are in the same directory
+
+```java
+// MainClass.java
+public class MainClass {
+    public static void main(String[] args) {
+        MyClass myObj = new MyClass();
+        System.out.println(myObj.x);
+    }
+}
+```
+
+```java
+// MyClass.java
+public class MyClass {
+    int x = 10;
+}
+```
+
+you use the command **javac file.java** to compile each file. However, if you compile MainClass.java, it will generate two files: MainClass.class & MyClass.class. It is because MyClass is used in MyClass. In order to get MainClass work, MyClass must be compiled. But if you compile MyClass.java, it will only generate MyClass.class
+
+After you have compiled .java files to get .class files, you can use **java MainClass** to run the program. This command looks for a file called MainClass.class then executes it
+
+### Static & Non-Static methods
+
+In java, function main is a public static function inside a class. Thus, you cannot call a non-static method in the same class. Just imaging, how can you modify something inside an instance if you are not in any instance?
+
+However, a non-static function can call any static functon withing its class (NOT FAIR!!!)
+
+## Constructor
+
+Constructors in java is the same as c++
