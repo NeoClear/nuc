@@ -11,6 +11,8 @@ Java is worse than c++ & python
 Its STL is toooooooo bad!!!
 You even cannot get the default of a non-existing key in a map!!!
 
+<!--more-->
+
 ## HashMap & HashSet
 
 HashMap & HashSet need wrapper types, so you cannot use int, float directly (because they are primitive types)
