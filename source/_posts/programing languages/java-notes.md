@@ -316,7 +316,7 @@ public class MyClass {
 }
 ```
 
-you use the command **javac file.java** to compile each file. However, if you compile MainClass.java, it will generate two files: MainClass.class & MyClass.class. It is because MyClass is used in MyClass. In order to get MainClass work, MyClass must be compiled. But if you compile MyClass.java, it will only generate MyClass.class
+you use the command **javac file.java** to compile each file. However, if you compile MainClass.java, it will generate two files: MainClass.class & MyClass.class. It is because MyClass is used in MainClass. In order to get MainClass work, MyClass must be compiled. But if you compile MyClass.java, it will only generate MyClass.class
 
 After you have compiled .java files to get .class files, you can use **java MainClass** to run the program. This command looks for a file called MainClass.class then executes it
 
