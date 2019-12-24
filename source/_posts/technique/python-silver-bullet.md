@@ -1,8 +1,11 @@
 ---
 title: python silver bullet
 date: 2019-12-22 04:16:11
+categories:
+- silver bullet
 tags:
 - python
+- silver bullet
 ---
 
 ## collections

@@ -1,8 +1,11 @@
 ---
 title: c++ silver bullet
 date: 2019-12-19 12:40:23
+categories:
+- silver bullet
 tags:
 - c++
+- silver bullet
 ---
 
 ## std

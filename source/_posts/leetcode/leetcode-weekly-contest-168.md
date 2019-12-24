@@ -34,6 +34,24 @@ class Solution:
         return cnt
 ```
 
+```java
+// java
+class Solution {
+    public boolean is_even(int n) {
+        int cnt = 0;
+        for (; n != 0; n /= 10, cnt++) {}
+        return cnt % 2 == 0;
+    }
+    public int findNumbers(int[] nums) {
+        int cnt = 0;
+        for (int n : nums)
+            if (is_even(n))
+                cnt++;
+        return cnt;
+    }
+}
+```
+
 ```c++
 // c++
 class Solution {
@@ -95,6 +113,31 @@ public:
 };
 ```
 
+```java
+// java
+class Solution {
+    public boolean isPossibleDivide(int[] nums, int k) {
+        HashMap<Integer, Integer> count = new HashMap<Integer, Integer>();
+        TreeSet<Integer> keys = new TreeSet<>();
+        for (int n : nums) {
+            count.put(n, count.getOrDefault(n, 0) + 1);
+            keys.add(n);
+        }
+        for (int n : keys) {
+            if (count.getOrDefault(n, 0) == 0)
+                continue;
+            int minus = count.get(n);
+            for (int i = n; i < n + k; i++) {
+                if (count.getOrDefault(i, 0) < minus)
+                    return false;
+                count.put(i, count.get(i) - minus);
+            }
+        }
+        return true;
+    }
+}
+```
+
 ## 1297. Maximum Number of Occurrences of a Substring
 
 ```python
@@ -132,6 +175,28 @@ public:
         return ans;
     }
 };
+```
+
+```java
+// java
+class Solution {
+    public int maxFreq(String s, int maxLetters, int minSize, int maxSize) {
+        HashMap<String, Integer> count = new HashMap<>();
+        for (int i = 0; i < s.length() - minSize + 1; i++) {
+            String w = s.substring(i, i + minSize);
+            HashSet<Character> cnt = new HashSet<Character>();
+            for (char c : w.toCharArray())
+                cnt.add(c);
+            if (cnt.size() > maxLetters)
+                continue;
+            count.put(w, count.getOrDefault(w, 0) + 1);
+        }
+        int mm = 0;
+        for (int i : count.values())
+            mm = Math.max(mm, i);
+        return mm;
+    }
+}
 ```
 
 ## 1298. Maximum Candies You Can Get from Boxes
@@ -203,4 +268,43 @@ public:
         return cnt;
     }
 };
+```
+
+```java
+// java
+class Solution {
+    public int maxCandies(int[] status, int[] candies, int[][] keys, int[][] containedBoxes, int[] initialBoxes) {
+        int cnt = 0;
+        HashSet<Integer> hasKey = new HashSet<>();
+        HashSet<Integer> visiting = new HashSet<>();
+        HashSet<Integer> visited = new HashSet<>();
+        // Initialize visiting
+        for (int i : initialBoxes)
+            visiting.add(i);
+        boolean changed = true;
+        while (changed) {
+            changed = false;
+            HashSet<Integer> insert = new HashSet<>();
+            HashSet<Integer> remove = new HashSet<>();
+            for (int box : visiting) {
+                if (status[box] == 1 || hasKey.contains(box)) {
+                    cnt += candies[box];
+                    changed = true;
+                    visited.add(box);
+                    remove.add(box);
+                    for (int dest : containedBoxes[box])
+                        insert.add(dest);
+                    for (int k : keys[box])
+                        hasKey.add((k));
+                }
+            }
+            for (int it : remove)
+                visiting.remove(it);
+            for (int it : insert)
+                if (!visited.contains(it))
+                    visiting.add(it);
+        }
+        return cnt;
+    }
+}
 ```
