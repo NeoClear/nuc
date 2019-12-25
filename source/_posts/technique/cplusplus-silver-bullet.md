@@ -59,3 +59,26 @@ s.substr(i, length)
 ```
 
 i indicates the index of first character and length stands for the length of the slice.
+
+## Useful Functions
+
+### memset
+
+```c++
+#include <cstring>
+memset(addr, value, sizeof(addr));
+```
+
+### isdigit
+
+```c++
+#include <cctype>
+if(isdigit(ch)) {}
+```
+
+### sort
+
+```c++
+#include <algorithm>
+sort(dat, dat + n);
+```
