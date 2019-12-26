@@ -64,3 +64,13 @@ visited.contains(1);
 visited.size();
 visited.remove(1);
 ```
+
+## String
+
+As we all know, looping over an str in python can be done directly. In java, however, it is not allowed. You can only use array or iterable objects in a foreach loop. However, we have a method to solve it
+
+```java
+String s = "innovation";
+for (char ch : s.toCharArray())
+    System.out.println(ch);
+```

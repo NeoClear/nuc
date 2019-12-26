@@ -329,3 +329,305 @@ However, a non-static function can call any static functon withing its class (NO
 ## Constructor
 
 Constructors in java is the same as c++
+
+## Modifier
+
+You can interpret modifiers as describers. They describes different aspects of a variable or function or even class
+
+There are two types of modifiers:
+
++ Access Modifiers
++ Non-Access Modifers
+
+### Access Modifiers
+
++ Classes
+    - **public**: The class is accessible by any other class
+    - **default**: The class is only accessible by classes in the same package
++ Attributes, methods & constructors
+    - **public**: The code is accessible for all classes
+    - **private**: The code is only accessible within the declared class
+    - **default**: The code is only accessible in the same package
+    - **protected**: The code is only accessible in the same package and subclasses
+
+### Non-Access Modifiers
+
++ Classes
+    - **final**: The class cannot be inherited by other classes
+    - **abstract**: The class cannot be used to create objects
+
++ Attributes & Methods
+    - **final**: Attributes & methods cannot be overridden/modified
+    - **static**: Attributes & methods belongs to the class, rather than an object
+    - **abstract**: Can only be used in an abstract class, and can only be used on methods. The method does not have a body
+    - **transient**: Attributes & methods are skipped when serializing the object containing them
+    - **synchronized**: Methods can only be accessed by one thread at a time
+    - **volatile**: The value will not be cached. Always read from main memory
+
+## Package
+
+```java
+// Import a class of a package
+import java.util.HashMap;
+// Import all classes of a package
+import java.util.*;
+```
+
+For user defined packages, java uses a file system directory to store them. Just like folders on your computer. For example: root -> mypack -> MyPackageClass.java
+
+**Hint: java packages are lower case (avoid conflict with classes)**
+
+If you want to compile a package, you can follow these steps
+
+```java
+// MyPackageClass.java
+package mypack;
+public class MyPackageClass {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+```
+
+```console
+# -d specifies the location to put package
+javac -d . MyPackageClass.java
+```
+
+Then you will see a folder with MyPackageClass.class in the same directory
+
+Run it
+
+```console
+java mypack.MyPackageClass
+```
+
+## Inheritance
+
+```java
+public class MyClass {
+    public static void main(String[] args) {
+        Car myCar = new Car();
+        myCar.honk();
+        System.out.println(myCar.brand + " " + myCar.modelName);
+    }
+}
+
+class Vehicle {
+    protected String brand = "Ford";
+    public void honk() {
+        System.out.println("TuT");
+    }
+}
+
+public class Car extends Vehicle {
+    public String modelName = "Mustang";
+}
+```
+
+It seems that my openjdk is not smart enough. It will throw an error if you place a class without main method at first
+
+## Polymorphism
+
+Polymorphism means use the same function of two inherited class to perform different tasks
+
+```java
+public class MyClass {
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();
+        Animal myPig = new Pig();
+        Animal myDog = new Dog();
+        myAnimal.beep();
+        myPig.beep();
+        myDog.beep();
+    }
+}
+
+public class Animal {
+    public void beep() {
+        System.out.println("Animal Makes Sounds");
+    }
+}
+
+public class Pig extends Animal {
+    public void beep() {
+        System.out.println("Pig hoke");
+    }
+}
+
+public class Dog extends Animal {
+    public void beep() {
+        System.out.println("Dog bark");
+    }
+}
+```
+
+## Inner Class
+
+Very interesting topic (Although I didn't find it really useful)
+
+Inner class is dependent on outer class. Thus, we need a instance or object to use inner class (this is weird)
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        OuterClass myOuter = new OuterClass();
+        // Remember this notation
+        OuterClass.InnerClass myInner = myOuter.new InnerClass();
+        System.out.println(myOuter.x);
+        System.out.println(myInner.y);
+    }
+}
+
+public class OuterClass {
+    int x = 10;
+    public class InnerClass {
+        int y = 5;
+    }
+}
+```
+
+However, if you use static modifier to describe inner class, then you do not need an instance to use inner class
+
+**Side Note**
+We cannot declare static methods in inner class because inner class is implicitly associated with an outer class object
+
+Inner class can actually access attributes & methods of outer classes
+
+## Abstraction
+
+Abstract keyword:
+
++ abstract class
+    cannot be used to create objects
++ abstract method
+    can only be used in an abstract class, does not have function body
+
+Abstract classes can have non-abstract methods, abstract methods must inside an abstract class
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Pig myPig = new Pig();
+        myPig.animalSound();
+        myPig.sleep();
+    }
+}
+
+abstract class Animal {
+    public abstract void animalSound();
+    public void sleep() {
+        System.out.println("Zzz");
+    }
+}
+
+class Pig extends Animal {
+    public void animalSound() {
+        System.out.println("Wee wee");
+    }
+}
+```
+
+## Interface
+
+Unlike inheritance, interface use **implements** to implement. You can implement from several interfaces. You must overwrite all methods in interfaces, and you can add more methods to it
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Dog myDog = new Dog();
+        myDog.voice();
+        System.out.println(myDog.price());
+    }
+}
+
+interface Animal {
+    public void voice();
+}
+
+interface LiveStock {
+    public int price();
+}
+
+class Dog implements Animal, LiveStock {
+    public void voice() {
+        System.out.println("Zzz");
+    }
+    void sleep() {
+        System.out.println("Wee wee");
+    }
+    public int price() {
+        return 255;
+    }
+}
+```
+
+## Enum
+
+```java
+public class Main {
+    enum Level {
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+    public static void main(String[] args) {
+        Level myVar = Level.HIGH;
+        // Can print its string form directly
+        System.out.println(myVar);
+        // Loop through all values
+        for (Level val : Level.values())
+            System.out.println(val);
+    }
+}
+```
+
+## User Input
+
+Use java.util.Scanner
+
+```java
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println(input.nextInt());
+        System.out.println(input.nextDouble());
+        System.out.println(input.nextLine());
+    }
+}
+```
+
+## Date & Time
+
+Date means year, month & day, time means hour, minute & second
+
+```java
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
+public class Main {
+    public static void main(String[] args) {
+        LocalDate date = LocalDate.now();
+        System.out.println(date);
+        LocalTime time = LocalTime.now();
+        System.out.println(time);
+        LocalDateTime dateTime = LocalDateTime.now();
+        System.out.println(dateTime);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm:ss");
+        System.out.println(formatter.format(dateTime));
+        // yyyy year
+        // MM month in digit
+        // MMM month in abbr
+        // dd day
+        // HH hour
+        // mm minute
+        // ss second
+    }
+}
+```
+
