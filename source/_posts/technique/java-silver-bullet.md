@@ -25,7 +25,7 @@ HashSet<Integer> visited = new HashSet<>();
 
 And in java, the sorted version of map & set are called **TreeMap** & **TreeSet** (It is weird)
 
-Java does not have operator overloading mechanism for these STLs. Thus, you have to use awkward functions to have soething which is easy in c++. For example
+Java does not have operator overloading mechanism for these STLs. Thus, you have to use awkward functions to have something which is easy in c++. For example
 
 ```java
 HashMap<Integer, Integer> map = new HashMap<>();

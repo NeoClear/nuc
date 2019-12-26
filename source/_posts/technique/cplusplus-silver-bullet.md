@@ -82,3 +82,44 @@ if(isdigit(ch)) {}
 #include <algorithm>
 sort(dat, dat + n);
 ```
+
+## Calculation
+
+### Not (!)
+
+If you apply **!** to an integer, then 0 would be 1, and others would be 0
+
+### array & structure initialization
+
+If you created an array like
+
+```c++
+int t[SIZE];
+```
+
+Then elements in t are random values. However, if you use this
+
+```c++
+int t[SIZE] = {};
+```
+
+These elements would be initialized as 0
+
+However, you can only do this at its generation. If you created it then assign it, it would thow an compile error
+
+```c++
+// Wrong!!!
+int t[SIZE];
+t = {};
+```
+
+But structures are different, you can assign it after it is defined
+
+```c++
+struct str {
+  int a, b;
+};
+
+str t;
+t = {2, 3};
+```
