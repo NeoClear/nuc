@@ -631,3 +631,48 @@ public class Main {
 }
 ```
 
+## ArrayList
+
+You can see ArrayList as vector in c++
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> arr = new ArrayList<String>();
+        arr.add("inno");
+        arr.add("maru");
+        arr.add("dark");
+        System.out.println(arr);
+        System.out.println(arr.get(0));
+        arr.set(0, "trap");
+        System.out.println(arr);
+        for (String s : arr)
+            System.out.println(s);
+    }
+}
+```
+
+## Wrapper Class
+
+For these wrapper classes, it has a method called **toString()**. It will return the String form of the value
+
+## Exception
+
+```java
+try {
+    // codes here
+} catch (Exception e) {
+    // handling the error
+} finally {
+    // after everything is settled
+}
+
+// throw an exception, must have a new keyword
+throw new ArithmeticException("Access denied");
+```
+
+## File
+
+Use Scanner to read file contents, FileWriter to write files, use File to create & delete files
