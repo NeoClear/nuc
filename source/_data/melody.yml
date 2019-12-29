@@ -190,8 +190,8 @@ addThis:
 # ---------------
 disqus:
   enable: false
-  #shortname:
-  #count:
+  # shortname: neoclear.disqus.com
+  # count: true
 
 # laibili:
 # enable: false
