@@ -54,7 +54,7 @@ for p in range(t):
 
 Simple gready problem
 presents which is shallower than the current deepest present takes only 1 to get
-presents which is deeper than the current deepest present takes (depth - presents already get) * 1 steps to get
+presents which is deeper than the current deepest present takes (depth - presents already get) * 2 + 1 steps to get
 
 ```python
 t = int(input())
