@@ -1,5 +1,5 @@
 ---
-title: analysis of cil & mono infrastructure
+title: analysis of cil & mono infrastructure (1)
 date: 2020-01-05 21:54:42
 categories:
 - common intermediate language
@@ -152,3 +152,194 @@ If the index exceedes 3, use short format instead
 ```cil
 ldloc.s 42
 ```
+
+### Access method arguments & control flow
+
+We have a piece of code that accesses its arguments
+
+```cs
+class Test {
+    public static void Main(string[] args) {
+        foreach (string it in args)
+            System.Console.WriteLine(it);
+    }
+}
+```
+
+```cil
+.assembly ConsoleApp{}
+
+.method public static void Main (string[] args)
+{
+	.entrypoint
+	.locals init (
+		string	V_99,
+		string[]	V_1,
+		int32	V_2
+	)
+    // load the first argument to stack top
+	IL_0000:  ldarg.0 
+	IL_0001:  stloc.1 
+	IL_0002:  ldc.i4.0 
+	IL_0003:  stloc.2
+
+    // jump to the label
+	IL_0004:  br IL_0017
+
+	IL_0009:  ldloc.1
+	IL_000a:  ldloc.2
+    // load the reference of given array at given index to stack top
+	IL_000b:  ldelem.ref 
+	IL_000c:  stloc.0
+	IL_000d:  ldloc.0
+	IL_000e:  call void class [mscorlib]System.Console::WriteLine(string)
+	IL_0013:  ldloc.2
+	IL_0014:  ldc.i4.1
+	IL_0015:  add
+	IL_0016:  stloc.2
+	IL_0017:  ldloc.2
+	IL_0018:  ldloc.1
+    // load the length of stack top array to stack top
+	IL_0019:  ldlen
+    // change the stack top to int32
+	IL_001a:  conv.i4
+    // if the first is smaller than the second, jump to target
+	blt IL_0009
+
+	ret 
+} // end of method Test::Main
+```
+
+#### new instructions in this part
+
++ ldarg
+if index is within [0, 3], just use **ldarg.0** to load arguments
+if exceeds, use **ldarg.S 432** instead
+
++ br
+jump to label
+
++ ldelem.ref
+load the element of array given index to stack top as a reference
+
++ ldlen
+load the length of given array to stack top
+
++ conv.i4
+convert to int32
+
++ blt
+jump to label if the first is less than the second
+
+### Generate new array & control flow
+
+I have the code:
+
+```cs
+class Test {
+    public static void Main(string[] args) {
+        int[] lst = {0, 1};
+        for (int i = 0; i < 2; i++)
+            System.Console.WriteLine(lst[i]);
+    }
+}
+```
+
+The corresponding cil code is
+
+```cil
+.assembly	ConsoleApp{}
+
+.method public static void Main (string[] args) {
+	.entrypoint
+	.locals init (
+		int32[]	V_0,
+		int32	V_1
+	)
+	IL_0000:  ldc.i4.2
+	IL_0001:  newarr [mscorlib]System.Int32
+	IL_0006:  dup
+	IL_0007:  ldc.i4.1
+	IL_0008:  ldc.i4.1
+	IL_0009:  stelem.i4
+	IL_000a:  stloc.0
+	IL_000b:  ldc.i4.0
+	IL_000c:  stloc.1 
+	IL_000d:  br IL_001e
+
+	IL_0012:  ldloc.0 
+	IL_0013:  ldloc.1 
+	IL_0014:  ldelem.i4 
+	IL_0015:  call void class [mscorlib]System.Console::WriteLine(int32)
+	IL_001a:  ldloc.1 
+	IL_001b:  ldc.i4.1 
+	IL_001c:  add 
+	IL_001d:  stloc.1 
+	IL_001e:  ldloc.1 
+	IL_001f:  ldc.i4.2 
+	IL_0020:  blt IL_0012
+
+	IL_0025:  ret 
+} // end of method Test::Main
+```
+
+#### new instruction of this example
+
++ newarr
+create a new array and pushes its addr to stack top given array size
+
++ dup
+copy the stack top
+
+### customized cil codes
+
+This is a code that generates a int[] = {0, 3, 1} and print arr.getIndex(i) times "Hello World"
+
+```cil
+.method public static void main(string[] args) {
+    .entrypoint
+    .locals init (
+        string  V_0,
+        int32[] V_1,
+        int32   V_2
+    )
+    ldstr   "hello world!"
+    stloc.0
+    ldc.i4.0
+    stloc.2
+
+    ldc.i4.3
+    newarr [mscorlib]System.Int32
+    stloc.1
+    ldloc.1
+    ldc.i4.1
+    ldc.i4.3
+    stelem.i4
+    ldloc.1
+    ldc.i4.2
+    ldc.i4.1
+    stelem.i4
+    IL_0000:    br IL_0002
+
+    IL_0001:    ldloc.0
+    ldloc.1
+    ldloc.2
+    ldelem.i4
+    call void print(string, int32)
+    ldc.i4.0
+    call void [mscorlib]System.Console::WriteLine(int32)
+
+    ldloc.2
+    ldc.i4.1
+    add
+    stloc.2
+
+    IL_0002:    ldloc.2
+    ldc.i4.3
+    blt IL_0001
+
+    ret
+}
+```
+
+This piece of code shows how arrays are stored in the actual code. Array is just a reference, and after modifying its elements, you do not need to store its value back to local variable table
