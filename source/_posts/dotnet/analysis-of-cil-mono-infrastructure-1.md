@@ -1,5 +1,5 @@
 ---
-title: analysis of cil & mono infrastructure (1)
+title: analysis of cil & mono infrastructure 1
 date: 2020-01-05 21:54:42
 categories:
 - common intermediate language
