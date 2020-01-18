@@ -100,3 +100,88 @@ fun getStringLength(obj: Any): Int? {
     return null
 }
 ```
+
+## For & While Loop
+
+```kotlin
+for (ele in lst)
+    println(ele)
+
+for (index in lst.indices)
+    println("Element at $index is ${lst[index]}")
+var i = 0
+while (i < lst.size) {
+    println("Element at $i is ${lst[i]}")
+    i++
+}
+```
+
+## When expression
+
+```kotlin
+when (obj) {
+    1           -> "One"
+    "Hello"     -> "Greeting"
+    is Long     -> "Long"
+    !is String  -> "Not String"
+    else        -> "Unknown"
+}
+```
+
+## Range
+
+```kotlin
+for (i in 1..10)
+    println(i)
+for (i in 10 downTo 1 step 2)
+    println(i)
+```
+
+Does not include the last one
+
+```kotlin
+fun main() {
+    for (i in 1 until 10)
+        println(i)
+}
+```
+
+## Apply lambda to collection class
+
+```kotlin
+fun main() {
+    val fruits = listOf("banana", "apple", "kiwi", "avocado")
+    fruits
+        .filter { it.startsWith("a") }
+        .sortedBy { it }
+        .map { it.toUpperCase() }
+        .forEach { println(it) }
+}
+```
+
+## Boxing
+
+Primitive types are stored as primitive types in java
+Nullable values however, are boxed in its bytecode
+
+```kotlin
+fun main() {
+    val a = 1000
+    println(a === a)
+    println(a == a)
+    val b: Int? = a
+    val c: Int? = a
+    println(b === c)
+    println(b == c)
+}
+```
+
+## Array Generation
+
+```kotlin
+fun main() {
+    val asc = Array(5) { i -> (i * i).toString() }
+    for (ele in asc)
+        println(ele)
+}
+```
