@@ -9,7 +9,7 @@ tags:
 ---
 
 The first time that I finish all problems neatly within time limit. Well done!
-The second prob is actually the most difficult one (some tricks required)
+The third prob is actually the most difficult one (some tricks required)
 
 <!--more-->
 
