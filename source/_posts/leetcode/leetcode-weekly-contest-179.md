@@ -72,6 +72,28 @@ public:
 };
 ```
 
+A better solution from bottom up
+
+```c++
+class Solution {
+public:
+    int numOfMinutes(int n, int headID, vector<int>& manager, vector<int>& informTime) {
+        unordered_map<int, int> cache;
+        function<int(int)> solve = [&](int cur) {
+            if (cur == headID)
+                return 0;
+            if (cache.count(cur))
+                return cache[cur];
+            return cache[cur] = informTime[manager[cur]] + solve(manager[cur]);
+        };
+        int ans = 0;
+        for (int i = 0; i < n; i++)
+            ans = max(ans, solve(i));
+        return ans;
+    }
+};
+```
+
 ## Frog Position After T Seconds
 
 BFS
@@ -112,6 +134,49 @@ public:
             }
             if (num_dest == 0)
                 q.push({id, prob, time + 1});
+        }
+        return 0.0;
+    }
+};
+```
+
+Cleaner version
+
+```c++
+class Solution {
+public:
+    double frogPosition(int n, vector<vector<int>>& edges, int t, int target) {
+        unordered_map<int, vector<int>> graph;
+        for (const auto& it : edges) {
+            graph[it.front()].push_back(it.back());
+            graph[it.back()].push_back(it.front());
+        }
+        // [node, prob]
+        unordered_set<int> visited;
+        queue<pair<int, double>> q;
+        q.push({1, 1.0});
+        visited.insert(1);
+        int steps = 0;
+        while (!q.empty() && steps <= t) {
+            int size = q.size();
+            while (size--) {
+                int cur;
+                double prob;
+                tie(cur, prob) = q.front();
+                q.pop();
+                if (cur == target && steps == t)
+                    return prob;
+                int num_dest = graph[cur].size() - (cur == 1 ? 0 : 1);
+                if (num_dest == 0 && cur == target)
+                    return prob;
+                for (const auto& dest : graph[cur]) {
+                    if (visited.count(dest))
+                        continue;
+                    visited.insert(dest);
+                    q.push({dest, prob / num_dest});
+                }
+            }
+            steps++;
         }
         return 0.0;
     }
